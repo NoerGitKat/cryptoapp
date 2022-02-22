@@ -39,7 +39,7 @@ const menuItems: { icon: React.ReactNode; href: string; name: string }[] = [
 
 const Navbar: React.FC<INavbarProps> = ({ name }) => {
   return (
-    <nav className="nav-container">
+    <div className="nav-container">
       <div className="logo-container">
         <Avatar src={icon} size="large" />
         <Typography.Title level={2} className="logo">
@@ -53,7 +53,7 @@ const Navbar: React.FC<INavbarProps> = ({ name }) => {
           </Menu.Item>
         ))}
       </Menu>
-    </nav>
+    </div>
   );
 };
 
