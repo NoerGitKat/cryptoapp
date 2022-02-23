@@ -1,10 +1,7 @@
 import React from "react";
 import { Col, Row, Statistic } from "antd";
 import Title from "antd/lib/typography/Title";
-
-interface IHomeProps {
-  name: string;
-}
+import { IHomeProps } from "../interfaces";
 
 const columns: { title: string; value: number }[] = [
   { title: "Cryptocurrencies", value: 5 },

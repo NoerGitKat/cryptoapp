@@ -9,10 +9,7 @@ import {
   MenuOutlined,
 } from "@ant-design/icons";
 import icon from "../assets/cryptocurrency.png";
-
-interface INavbarProps {
-  name: string;
-}
+import { INavbarProps } from "../interfaces";
 
 const menuItems: { icon: React.ReactNode; href: string; name: string }[] = [
   {
