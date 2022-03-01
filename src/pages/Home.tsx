@@ -1,8 +1,9 @@
 import React from "react";
 import { Col, Row, Statistic, Spin } from "antd";
 import Title from "antd/lib/typography/Title";
-import { IHomeProps, IStats, ICoin } from "../interfaces";
-import coinRankingAPI from "../services/cryptoAPI";
+import { IHomeProps, IStats } from "../interfaces";
+import { useCoinRanking } from "../hooks";
+import { startCase } from "lodash";
 
 // Temp
 const columns: { title: string; value: number }[] = [
@@ -14,23 +15,27 @@ const columns: { title: string; value: number }[] = [
 ];
 
 const Home: React.FC<IHomeProps> = ({ name }) => {
-  const { data, isFetching } = coinRankingAPI.useGetCryptosQuery();
-  // const { stats, coins }: { stats: IStats; coins: ICoin[] } = data && data.data;
+  const { coinRankingData, isFetching } = useCoinRanking();
 
   return (
     <>
       <Title level={2} className="heading">
         {name}
       </Title>
-      {isFetching && !data ? (
+      {isFetching && !coinRankingData ? (
         <Spin />
       ) : (
         <Row>
-          {columns.map((col) => (
-            <Col span={12} key={col.title}>
-              <Statistic title={`Total ${col.title}`} value={col.value} />
-            </Col>
-          ))}
+          {coinRankingData
+            ? Object.keys(coinRankingData.data.stats).map((stat) => (
+                <Col span={12} key={stat}>
+                  <Statistic
+                    title={startCase(stat)}
+                    value={coinRankingData.data.stats[stat as keyof IStats]}
+                  />
+                </Col>
+              ))
+            : null}
         </Row>
       )}
     </>
