@@ -1,11 +1,12 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { ICoinsResponse } from "../interfaces";
 
 const coinRankingAPIHeaders = {
   "x-rapidapi-host": "coinranking1.p.rapidapi.com",
-  "x-rapidapi-key": "d1c6ba918dmshb21d038b58a9144p102725jsn36315a31a555",
+  "x-rapidapi-key": process.env.REACT_APP_RAPID_API_COINRANKING,
 };
 
-const baseUrl = "https://coinranking1.p.rapidapi.com/coins";
+const baseUrl = "https://coinranking1.p.rapidapi.com";
 
 const createRequest = (url: string) => ({
   url,
@@ -16,8 +17,8 @@ const coinRankingAPI = createApi({
   reducerPath: "coinRankingAPI",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
-    getCryptos: builder.query({
-      query: () => createRequest("/exchanges"),
+    getCryptos: builder.query<ICoinsResponse, void>({
+      query: () => createRequest("/coins"),
     }),
   }),
 });

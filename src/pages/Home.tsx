@@ -1,8 +1,10 @@
 import React from "react";
-import { Col, Row, Statistic } from "antd";
+import { Col, Row, Statistic, Spin } from "antd";
 import Title from "antd/lib/typography/Title";
-import { IHomeProps } from "../interfaces";
+import { IHomeProps, IStats, ICoin } from "../interfaces";
+import coinRankingAPI from "../services/cryptoAPI";
 
+// Temp
 const columns: { title: string; value: number }[] = [
   { title: "Cryptocurrencies", value: 5 },
   { title: "Exchanges", value: 5 },
@@ -12,18 +14,25 @@ const columns: { title: string; value: number }[] = [
 ];
 
 const Home: React.FC<IHomeProps> = ({ name }) => {
+  const { data, isFetching } = coinRankingAPI.useGetCryptosQuery();
+  // const { stats, coins }: { stats: IStats; coins: ICoin[] } = data && data.data;
+
   return (
     <>
       <Title level={2} className="heading">
         {name}
       </Title>
-      <Row>
-        {columns.map((col) => (
-          <Col span={12}>
-            <Statistic title={`Total ${col.title}`} value={col.value} />
-          </Col>
-        ))}
-      </Row>
+      {isFetching && !data ? (
+        <Spin />
+      ) : (
+        <Row>
+          {columns.map((col) => (
+            <Col span={12} key={col.title}>
+              <Statistic title={`Total ${col.title}`} value={col.value} />
+            </Col>
+          ))}
+        </Row>
+      )}
     </>
   );
 };

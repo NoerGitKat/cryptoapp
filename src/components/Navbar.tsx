@@ -45,7 +45,7 @@ const Navbar: React.FC<INavbarProps> = ({ name }) => {
       </div>
       <Menu theme="dark">
         {menuItems.map((item) => (
-          <Menu.Item icon={item.icon}>
+          <Menu.Item icon={item.icon} key={item.name}>
             <Link to={item.href}>{item.name}</Link>
           </Menu.Item>
         ))}
