@@ -9,15 +9,15 @@ export interface IHomeProps {
 export interface ICoin {
   "24hVolume": string;
   btcPrice: string;
-  change: string;
+  change: number;
   coinrankingUrl: string;
   color: string;
   iconUrl: string;
   listedAt: number;
   lowVolume: false;
-  marketCap: string;
+  marketCap: number;
   name: string;
-  price: string;
+  price: number;
   rank: number;
   sparkline: string[];
   symbol: string;
@@ -27,10 +27,10 @@ export interface ICoin {
 
 export interface IStats {
   total: number;
-  total24hVolume: string;
+  total24hVolume: number;
   totalCoins: number;
   totalExchanges: number;
-  totalMarketCap: string;
+  totalMarketCap: number;
   totalMarkets: number;
 }
 

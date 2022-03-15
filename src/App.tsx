@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { Layout, Typography, Space } from "antd";
-import Navbar from "./components/Navbar";
+import { Navbar } from "./components";
 import "./styles/App.scss";
 import Home from "./pages/Home";
 

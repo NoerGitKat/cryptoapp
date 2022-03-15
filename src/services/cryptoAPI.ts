@@ -17,8 +17,8 @@ const coinRankingAPI = createApi({
   reducerPath: "coinRankingAPI",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
-    getCryptos: builder.query<ICoinsResponse, void>({
-      query: () => createRequest("/coins"),
+    getCryptos: builder.query<ICoinsResponse, number | void>({
+      query: (count) => createRequest(`/coins?limit=${count}`),
     }),
   }),
 });
